@@ -4,9 +4,11 @@ import os
 
 #How to upload files to a webserver using the request module (simple way
 
-images = os.listdir('/home/bryan/Pictures/')
+images_directory = '/where the images are located/'
+images = os.listdir(images_directory
 
-#url = "http://localhost/upload/"
+url = "http://localhost/upload/"
       
-    #with open('/usr/share/apache2/icons/'+image, 'rb') as opened:     
-        #r = request.post(url, files={'file': opened})
+for image in images:      
+    with open(images_directory+image, 'rb') as opened:     
+        r = request.post(url, files={'file': opened})

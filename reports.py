@@ -6,7 +6,7 @@ import datetime
 import os
 
 
-date = datetime.datetime.today()
+
 def generate_pdf(path):
     formated_body = ""
     files = os.listdir(path)    
@@ -18,12 +18,13 @@ def generate_pdf(path):
             formated_body += "name: " + name + "<br/>" + "weight: " + weight + "<br/><br/>"
     return formated_body
 
-title = str(date.year) + "-" + str(date.month) + "-" + str(date.day)
-report = SimpleDocTemplate('/home/bryan/Documents/report_lab.pdf')
-styles = getSampleStyleSheet()
-report_title = Paragraph("Updated on {}".format(title), styles["h1"])  
-info = generate_pdf('/home/bryan/Documents/text_files/')
-report_info = Paragraph(info, styles['BodyText'])
-space = Spacer(1,20)
-report.build([report_title, space, report_info, space])
+def generate_report(file, title, info):
+    date = datetime.date.today().strftime("%B %d, %Y") 
+    report = SimpleDocTemplate('/where to put the pdf/name(processed.pdf)')
+    styles = getSampleStyleSheet()
+    report_title = Paragraph("{} {}".format(title,date), styles["h1"])  
+    info = generate_pdf('/where the text files are located/')
+    report_info = Paragraph(info, styles['BodyText'])
+    space = Spacer(1,20)
+    report.build([report_title, space, report_info, space])
 

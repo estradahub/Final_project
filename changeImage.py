@@ -4,11 +4,12 @@ from PIL import Image
 import os
 
 save_path = '/home/bryan/Documents/'
-imagen = Image.open('/home/bryan/Pictures/error.png')
-resized = imagen.resize((600,400)).convert('RGB')
-#To capture the name of the file and save it with the same name other format
-for image in images:        
-    im_name = os.path.basename(image).split('.')  
-resized.save(save_path+'test.jpg', "JPEG")
+pic_directory = '/home/bryan/Pictures/'
+images = os.listdir('/home/bryan/Pictures/')
 
-print(resized) 
+for image in images:        
+    im_name = os.path.basename(image).split('.')[0]      
+    image = Image.open(pic_directory+image)
+    resized = image.resize((600,400)).convert('RGB')
+    resized.save(save_path+im_name, "JPEG")
+    
